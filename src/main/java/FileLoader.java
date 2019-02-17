@@ -14,7 +14,7 @@ public class FileLoader {
             BufferedReader br = new BufferedReader(new InputStreamReader(log));
             String strLine;
             while ((strLine = br.readLine()) != null) {
-                logList.add(strLine + System.lineSeparator());
+                logList.add(strLine);
             }
             log.close();
         } catch (Exception e) {

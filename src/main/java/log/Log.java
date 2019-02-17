@@ -1,27 +1,21 @@
 package log;
 
+
+import java.time.LocalDateTime;
+
 public class Log {
 
-    String date;
-    String time;
-    String thread;
-    String user;
-    LogType logType;
+    private LocalDateTime dateTime;
+    private String thread;
+    private String user;
+    private LogType logType;
 
-    public String getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public String getThread() {
