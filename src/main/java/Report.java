@@ -1,9 +1,14 @@
 import log.Log;
 import log.LogType;
-import java.util.List;
-import java.util.stream.Collectors;
 
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
 public class Report {
+
+    private static final String LOG_TIME_PATTERN = "dd/MM/yyyy HH:mm:ss";
 
     public List filterByLogType(List<Log> listOfLogs, LogType logType) {
         List<Log> listOfLogsByType = listOfLogs
@@ -11,6 +16,19 @@ public class Report {
                 .filter(log -> log.getLogType().equals(logType))
                 .collect(Collectors.toList());
         return listOfLogsByType;
+    }
+
+    public LocalDateTime createDateOfReport(){
+
+        Scanner sc = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(LOG_TIME_PATTERN, Locale.ENGLISH);
+        System.out.println("Give Date and Time of report in format");
+        System.out.println("Day/Month/Year Hour:Minutes:Seconds");
+        System.out.println(LOG_TIME_PATTERN);
+
+        String date = sc.nextLine();
+
+        return LocalDateTime.parse(date, formatter);
     }
 
     public List listCreateOrder(List<Log> listOfLogs){
@@ -37,17 +55,19 @@ public class Report {
         return this.filterByLogType(listOfLogs, LogType.SQL_DELETE);
     }
 
-    public void reportOfTreadsByTypeFromAll(List<Log> listOfLogs, LogType logType){
+    public String reportOfTreadsByTypeFromAll(List<Log> listOfLogs, LogType logType){
         int sumOfAllLogs = listOfLogs.size();
         int logsOfType = filterByLogType(listOfLogs,logType).size();
-        System.out.println("We have " + logsOfType + "from" + sumOfAllLogs + "of" + logType);
+        String reportOfTreadsByTypeFromAll = "We have " + logsOfType + " from " + sumOfAllLogs + " of " + logType;
+       return reportOfTreadsByTypeFromAll;
     }
 
     public void reportOfCreateOrderFromAll (List<Log> listOfLogs){
         reportOfTreadsByTypeFromAll(listOfLogs,LogType.CREATE_ORDER);
     }
 
-    public void reportOfTreadsByTypeFromAll(List<Log> listOfLogs, LogType logType, Log date){
+    public void reportOfTreadsByTypeInTime(List<Log> listOfLogs, LogType logType, Set<LocalDateTime> datesOfReport){
+        int logsOfType = filterByLogType(listOfLogs,logType).size();
 
     }
 }
