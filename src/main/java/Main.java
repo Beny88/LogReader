@@ -13,6 +13,7 @@ public class Main {
     System.out.println(listOfLogs.size());
     Report report = new Report();
     System.out.println(report.reportOfTreadsByTypeFromAll(listOfLogs,LogType.CREATE_ORDER));
-    System.out.println(report.createDateOfReport());
+
+    System.out.println(report.reportOfTreadsInTimeByType(listOfLogs,LogType.CREATE_ORDER));
     }
 }

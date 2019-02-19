@@ -11,11 +11,10 @@ public class Report {
     private static final String LOG_TIME_PATTERN = "dd/MM/yyyy HH:mm:ss";
 
     public List filterByLogType(List<Log> listOfLogs, LogType logType) {
-        List<Log> listOfLogsByType = listOfLogs
+        return listOfLogs
                 .stream()
                 .filter(log -> log.getLogType().equals(logType))
                 .collect(Collectors.toList());
-        return listOfLogsByType;
     }
 
     public LocalDateTime createDateOfReport(){
@@ -57,18 +56,25 @@ public class Report {
 
     public String reportOfTreadsByTypeFromAll(List<Log> listOfLogs, LogType logType){
         int sumOfAllLogs = listOfLogs.size();
-        int logsOfType = filterByLogType(listOfLogs,logType).size();
-        String reportOfTreadsByTypeFromAll = "We have " + logsOfType + " from " + sumOfAllLogs + " of " + logType;
-       return reportOfTreadsByTypeFromAll;
+        int ammountOfLogsWithType = filterByLogType(listOfLogs,logType).size();
+       return "We have " + ammountOfLogsWithType + " from " + sumOfAllLogs + " of " + logType;
     }
 
     public void reportOfCreateOrderFromAll (List<Log> listOfLogs){
         reportOfTreadsByTypeFromAll(listOfLogs,LogType.CREATE_ORDER);
     }
 
-    public void reportOfTreadsByTypeInTime(List<Log> listOfLogs, LogType logType, Set<LocalDateTime> datesOfReport){
-        int logsOfType = filterByLogType(listOfLogs,logType).size();
+    public List reportOfTreadsInTimeByType(List<Log> listOfLogs, LogType logType){
+        LocalDateTime startDateOfReport = createDateOfReport();
+        LocalDateTime endDateOfReport = createDateOfReport();
 
+        listOfLogs = listOfLogs.stream()
+                .filter(log -> log.getDateTime().isAfter(startDateOfReport))
+                .filter(log -> log.getDateTime().isBefore(endDateOfReport))
+                .collect(Collectors.toList());
+        filterByLogType(listOfLogs,logType);
+
+       return filterByLogType(listOfLogs,logType);
     }
 }
 
