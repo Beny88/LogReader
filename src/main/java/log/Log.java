@@ -3,42 +3,34 @@ package log;
 
 import java.time.LocalDateTime;
 
-public class Log {
+public abstract class Log {
 
-    private LocalDateTime dateTime;
-    private String thread;
-    private String user;
-    private LogType logType;
+    private final LocalDateTime dateTime;
+    private final String thread;
+    private final String user;
+    private final LogType logType;
+
+    Log(LocalDateTime dateTime, String thread, String user, LogType logType) {
+        this.dateTime = dateTime;
+        this.thread = thread;
+        this.user = user;
+        this.logType = logType;
+    }
 
     public LocalDateTime getDateTime() {
         return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
     }
 
     public String getThread() {
         return thread;
     }
 
-    public void setThread(String thread) {
-        this.thread = thread;
-    }
-
     public String getUser() {
         return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public LogType getLogType() {
         return logType;
     }
 
-    public void setLogType(LogType logType) {
-        this.logType = logType;
-    }
 }

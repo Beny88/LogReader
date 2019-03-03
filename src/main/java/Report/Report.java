@@ -1,3 +1,5 @@
+package Report;
+
 import log.Log;
 import log.LogType;
 
@@ -9,6 +11,16 @@ import java.util.stream.Collectors;
 public class Report {
 
     private static final String LOG_TIME_PATTERN = "dd/MM/yyyy HH:mm:ss";
+
+    private static Report report;
+    private Report(){}
+
+    public static Report getInstance(){
+        if(report == null){
+            report = new Report();
+        }
+        return report;
+    }
 
     public List filterByLogType(List<Log> listOfLogs, LogType logType) {
         return listOfLogs
@@ -56,8 +68,8 @@ public class Report {
 
     public String reportOfTreadsByTypeFromAll(List<Log> listOfLogs, LogType logType){
         int sumOfAllLogs = listOfLogs.size();
-        int ammountOfLogsWithType = filterByLogType(listOfLogs,logType).size();
-       return "We have " + ammountOfLogsWithType + " from " + sumOfAllLogs + " of " + logType;
+        int amountOfLogsWithType = filterByLogType(listOfLogs,logType).size();
+       return "We have " + amountOfLogsWithType + " from " + sumOfAllLogs + " of " + logType;
     }
 
     public void reportOfCreateOrderFromAll (List<Log> listOfLogs){

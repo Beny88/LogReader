@@ -1,4 +1,5 @@
 import log.Log;
+import log.LogCreateOrder;
 import log.LogType;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +12,17 @@ public class LogListCheck {
     private static final String CURRENT_YEAR = "2019";
     private static final String LOG_TIME_PATTERN = "dd/MM/yyyy HH:mm:ss";
 
-    public List logSplit(List<String> logList) {
+    private static LogListCheck logListCheck;
+
+    private LogListCheck(){}
+    public static LogListCheck getInstance(){
+        if (logListCheck==null){
+            logListCheck = new LogListCheck();
+        }
+            return logListCheck;
+    }
+
+    public List<Log> logSplit(final List<String> logList) {
         List<Log> listOfLogs = new ArrayList<>();
 
        logList.forEach(logLine -> {
@@ -33,14 +44,16 @@ public class LogListCheck {
                 logType = LogType.getLogTypeByName(splitedLogLine[4]);
             }
 
-            Log log = new Log();
-            log.setDateTime(dateTime);
-            log.setThread(thread);
-            log.setUser(user);
-            log.setLogType(logType);
+            final Log log = new Log.LogBuilder()
+                    .setDateTime(dateTime)
+                    .setLogType(logType)
+                    .setThread(thread)
+                    .setUser(user)
+                    .build();
 
             listOfLogs.add(log);
        });
+
         return listOfLogs;
     }
 

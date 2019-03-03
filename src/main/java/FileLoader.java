@@ -5,9 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileLoader {
+    //Singleton
+    private static FileLoader fileLoader;
+
+    private FileLoader() {}
+
+    public static FileLoader getInstance() {
+        if(fileLoader == null) {
+            fileLoader = new FileLoader();
+        }
+        return fileLoader;
+    }
 
     public List<String> loadLog() {
-        List<String> logList = new ArrayList();
+        List<String> logList = new ArrayList<>();
 
         try {
             FileInputStream log = new FileInputStream("C:\\Users\\tbana\\Documents\\LogReader\\src\\main\\java\\abc.log");
