@@ -28,4 +28,6 @@ public abstract class Builder {
         this.logType = logType;
         return this;
     }
+
+    public abstract Log build();
 }

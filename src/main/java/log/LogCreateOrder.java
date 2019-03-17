@@ -6,10 +6,10 @@ public class LogCreateOrder extends Log {
 
     private final Long orderNumber;
     private final Integer itemAmount;
-    private final Long value;
+    private final Double value;
 
     private LogCreateOrder(LocalDateTime dateTime, String thread, String user, LogType logType,
-            Long orderNumber, Integer itemAmount, Long value){
+            Long orderNumber, Integer itemAmount, Double value){
 
         super(dateTime, thread, user, logType);
 
@@ -26,7 +26,7 @@ public class LogCreateOrder extends Log {
         return itemAmount;
     }
 
-    public Long getValue() {
+    public Double getValue() {
         return value;
     }
 
@@ -34,7 +34,7 @@ public class LogCreateOrder extends Log {
 
         private Long orderNumber;
         private Integer itemAmount;
-        private Long value;
+        private Double value;
 
         public LogCreateOrderBuilder setOrderNumber(Long orderNumber) {
             this.orderNumber = orderNumber;
@@ -46,7 +46,7 @@ public class LogCreateOrder extends Log {
             return this;
         }
 
-        public LogCreateOrderBuilder setValue(Long value) {
+        public LogCreateOrderBuilder setValue(Double value) {
             this.value = value;
             return this;
         }

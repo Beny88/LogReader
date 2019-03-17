@@ -8,3 +8,11 @@
 14/01 10:45:12 web-1 bill.smith CreateOrder 1054543 items=1 value=122.45
 14/01 10:45:12 web-1 bill.smith CreateOrder 1054543 items=1 value=122.45
 16/01 10:45:12 web-1 bill.smith CreateOrder 1054543 items=1 value=122.45
+16/01 10:45:12 web-1 bill.smith CreateOrder 1054543 items=1 value=122.45
+16/01 13:14:12 web-1 marcin.makowski CancelOrder 23121 reason=blabla
+16/01 13:14:12 web-1 marcin.makowski CancelOrder 23121 reason=blabla
+16/01 13:14:12 web-1 marcin.makowski CancelOrder 23121 reason=blabla
+16/01 13:14:12 web-1 marcin.makowski CancelOrder 23121 reason=blabla
+16/01 13:14:12 web-1 marcin.makowski CancelOrder 23121 reason=blabla
+16/01 13:14:12 web-1 marcin.makowski CancelOrder 23121 reason=blabla
+16/01 10:45:12 web-1 bill.smith SQL SELECT took=12msec rows=1 SELECT * FROM order WHERE orderno = 1054562
